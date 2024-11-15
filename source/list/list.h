@@ -26,4 +26,9 @@ list_t *list_create(size_t data_size);
  * Destructor
  */
 int list_destroy(list_t **list);
+/*INSERTION*/
+int list_insert_first(list_t **list, void *item);
+int list_insert_last(list_t *list, void *item);
+int list_insert_at(list_t **list, size_t index, void *item);
+int list_fill(list_t *list, void *item);
 #endif // VZL_STRUCTURE_LIST_H

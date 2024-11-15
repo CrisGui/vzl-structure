@@ -19,3 +19,29 @@ int list_destroy(list_t **list) {
   }
   return LIST_SUCCESS;
 }
+int list_insert_first(list_t **list, void *item) {
+  list_t *first = list_create((*list)->data_size);
+  first->data = item;
+  first->next = *list;
+  *list = first;
+}
+
+int list_insert_last(list_t *list, void *item) {
+  list_t *current = list;
+  while (NULL != current->next) {
+    current->data = item;
+    current = current->next;
+  }
+  current->next = list_create(list->data_size);
+  current->data = item;
+}
+
+int list_insert_at(list_t **list, size_t index, void *item) {}
+
+int list_fill(list_t *list, void *item) {
+  list_t *current = list;
+  while (NULL != current) {
+    current->data = item;
+    current = current->next;
+  }
+}
