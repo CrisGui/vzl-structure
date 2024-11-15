@@ -37,4 +37,12 @@ int list_delete_first(list_t *list);
 int list_delete_last(list_t *list);
 int list_delete_at(list_t *list, size_t index);
 int list_clear(list_t *list);
+
+/*LOOKUP*/
+void *list_get_first_item(list_t *list);
+void *list_get_last_item(list_t *list);
+
+void *list_get_item(list_t *list, size_t index);
+size_t list_get_index(list_t *list, void *item);
+
 #endif // VZL_STRUCTURE_LIST_H
