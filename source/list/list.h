@@ -45,4 +45,9 @@ void *list_get_last_item(list_t *list);
 void *list_get_item(list_t *list, size_t index);
 size_t list_get_index(list_t *list, void *item);
 
+/*INFORMATION*/
+int list_is_initialized(list_t *list);
+int list_is_empty(list_t *list);
+size_t list_free_space(list_t *list);
+size_t list_byte_size(list_t *list);
 #endif // VZL_STRUCTURE_LIST_H
