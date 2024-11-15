@@ -50,4 +50,9 @@ int list_is_initialized(list_t *list);
 int list_is_empty(list_t *list);
 size_t list_free_space(list_t *list);
 size_t list_byte_size(list_t *list);
+
+/*MEMORY MANAGEMENT*/
+int list_resize(list_t *list, size_t size);
+int list_fit(list_t *list);
+
 #endif // VZL_STRUCTURE_LIST_H
