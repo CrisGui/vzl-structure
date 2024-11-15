@@ -19,6 +19,23 @@ int list_destroy(list_t **list) {
   }
   return LIST_SUCCESS;
 }
+
+list_t *list_copy(list_t *source) {
+  list_t *copy = list_create(source->data_size);
+  list_t *current = source;
+  while (NULL != current) {
+    list_insert_last(&(*copy), &current->data);
+    current = current->next;
+  }
+  return copy;
+}
+
+int list_swap(list_t *source, list_t *destination) {
+  list_t *tmp = source;
+  source = destination;
+  destination = tmp;
+}
+
 int list_insert_first(list_t **list, void *item) {
   list_t *first = list_create((*list)->data_size);
   first->data = item;

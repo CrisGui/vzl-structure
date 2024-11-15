@@ -31,4 +31,10 @@ int list_insert_first(list_t **list, void *item);
 int list_insert_last(list_t *list, void *item);
 int list_insert_at(list_t **list, size_t index, void *item);
 int list_fill(list_t *list, void *item);
+
+/*DELETION*/
+int list_delete_first(list_t *list);
+int list_delete_last(list_t *list);
+int list_delete_at(list_t *list, size_t index);
+int list_clear(list_t *list);
 #endif // VZL_STRUCTURE_LIST_H
