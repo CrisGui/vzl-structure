@@ -26,6 +26,14 @@ list_t *list_create(size_t data_size);
  * Destructor
  */
 int list_destroy(list_t **list);
+
+/**
+ * Return a exact copy of a given list
+ */
+list_t *list_copy(list_t *source);
+
+int list_swap(list_t *source, list_t *destination);
+
 /*INSERTION*/
 int list_insert_first(list_t **list, void *item);
 int list_insert_last(list_t *list, void *item);
