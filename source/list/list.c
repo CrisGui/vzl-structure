@@ -41,6 +41,7 @@ int list_swap(list_t *source, list_t *destination) {
   list_t *tmp = source;
   source = destination;
   destination = tmp;
+  return LIST_SUCCESS;
 }
 
 int list_insert_first(list_t **list, void *item) {
@@ -48,6 +49,7 @@ int list_insert_first(list_t **list, void *item) {
   first->data = item;
   first->next = *list;
   *list = first;
+  return LIST_SUCCESS;
 }
 
 int list_insert_last(list_t *list, void *item) {
@@ -58,9 +60,12 @@ int list_insert_last(list_t *list, void *item) {
   }
   current->next = list_create(list->data_size);
   current->data = item;
+  return LIST_SUCCESS;
 }
 
-int list_insert_at(list_t **list, size_t index, void *item) {}
+int list_insert_at(list_t **list, size_t index, void *item) {
+  return LIST_ERROR;
+}
 
 int list_fill(list_t *list, void *item) {
   list_t *current = list;
@@ -68,4 +73,5 @@ int list_fill(list_t *list, void *item) {
     current->data = item;
     current = current->next;
   }
+  return LIST_SUCCESS;
 }
