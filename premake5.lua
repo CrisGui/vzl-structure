@@ -4,8 +4,8 @@ location "./"
 language "C"
 configurations { "Debug", "Release", "Distro" }
 
-local dirBin = "%{wks.location}/binary/%{cfg.buildcfg}"
-local dirBld = "%{wks.location}/build/%{cfg.buildcfg}"
+local dirBin = "%{wks.location}/binary"
+local dirBld = "%{wks.location}/build"
 local dirSrc = "%{wks.location}/source"
 local dirLib = "%{wks.location}/library"
 local dirDoc = "%{wks.location}/documentation"
@@ -47,6 +47,7 @@ buildoptions {
   "-fvar-tracking-assignments",
   "-ggnu-pubnames",
   "-ginline-points",
+  "-gstatement-frontiers",
   "-fno-eliminate-unused-debug-types",
   "-Q",
   "-p",
@@ -119,6 +120,7 @@ buildoptions {
   "-fvar-tracking-assignments",
   "-ggnu-pubnames",
   "-ginline-points",
+  "-gstatement-frontiers",
   "-fno-eliminate-unused-debug-types",
   "-pedantic",
   "-pedantic-errors",
@@ -179,6 +181,7 @@ buildoptions {
   "-fvar-tracking-assignments",
   "-ggnu-pubnames",
   "-ginline-points",
+  "-gstatement-frontiers",
   "-fno-eliminate-unused-debug-types",
   "-pedantic",
   "-pedantic-errors",
@@ -215,90 +218,90 @@ filter {}
 
 project "Array"
 kind "StaticLib"
-location "%{dirSrc}/array/"
+location(dirSrc .. "/array/")
 targetname "array"
-targetdir "%{dirBin}"
-objdir "%{dirBld}"
-files { "%{dirSrc}/array/**.c" }
-includedirs { "%{dirSrc}/array/**.h" }
+targetdir(dirBin .. "%/{cfg.buildcfg}")
+objdir(dirBld .. "/%{cfg.buildcfg}")
+files { dirSrc .. "/array/**.c" }
+includedirs { dirSrc .. "/array/**.h" }
 
 project "Chain"
 kind "StaticLib"
-location "%{dirSrc}/chain/"
+location(dirSrc .. "/chain/")
 targetname "chain"
-targetdir "%{dirBin}"
-objdir "%{dirBld}"
-files { "%{dirSrc}/chain/**.c" }
-includedirs { "%{dirSrc}/chain/**.h" }
+targetdir(dirBin .. "/%{cfg.buildcfg}")
+objdir(dirBld .. "/%{cfg.buildcfg}")
+files { dirSrc .. "/chain/**.c" }
+includedirs { dirSrc .. "/chain/**.h" }
 
 project "Graph"
 kind "StaticLib"
-location "%{dirSrc}/graph/"
+location(dirSrc .. "/graph/")
 targetname "graph"
-targetdir "%{dirBin}"
-objdir "%{dirBld}"
-files { "%{dirSrc}/graph/**.c" }
-includedirs { "%{dirSrc}/graph/**.h" }
+targetdir(dirBin .. "/%{cfg.buildcfg}")
+objdir(dirBld .. "/%{cfg.buildcfg}")
+files { dirSrc .. "/graph/**.c" }
+includedirs { dirSrc .. "/graph/**.h" }
 
 project "Heap"
 kind "StaticLib"
-location "%{dirSrc}/heap/"
+location(dirSrc .. "/heap/")
 targetname "heap"
-targetdir "%{dirBin}"
-objdir "%{dirBld}"
-files { "%{dirSrc}/heap/**.c" }
-includedirs { "%{dirSrc}/heap/**.h" }
+targetdir(dirBin .. "/%{cfg.buildcfg}")
+objdir(dirBld .. "/%{cfg.buildcfg}")
+files { dirSrc .. "/heap/**.c" }
+includedirs { dirSrc .. "/heap/**.h" }
 
 project "List"
 kind "StaticLib"
-location "%{dirSrc}/list/"
+location(dirSrc .. "/list/")
 targetname "list"
-targetdir "%{dirBin}"
-objdir "%{dirBld}"
-files { "%{dirSrc}/list/**.c" }
-includedirs { "%{dirSrc}/list/**.h" }
+targetdir(dirBin .. "/%{cfg.buildcfg}")
+objdir(dirBld .. "/%{cfg.buildcfg}")
+files { dirSrc .. "/list/**.c" }
+includedirs { dirSrc .. "/list/**.h" }
 
 project "Map"
 kind "StaticLib"
-location "%{dirSrc}/map/"
+location(dirSrc .. "/map/")
 targetname "map"
-targetdir "%{dirBin}"
-objdir "%{dirBld}"
-files { "%{dirSrc}/map/**.c" }
-includedirs { "%{dirSrc}/map/**.h" }
+targetdir(dirBin .. "/%{cfg.buildcfg}")
+objdir(dirBld .. "/%{cfg.buildcfg}")
+files { dirSrc .. "/map/**.c" }
+includedirs { dirSrc .. "/map/**.h" }
 
 project "Matrix"
 kind "StaticLib"
-location "%{dirSrc}/matrix/"
+location(dirSrc .. "/matrix/")
 targetname "matrix"
-targetdir "%{dirBin}"
-objdir "%{dirBld}"
-files { "%{dirSrc}/matrix/**.c" }
-includedirs { "%{dirSrc}/matrix/**.h" }
+targetdir(dirBin .. "/%{cfg.buildcfg}")
+objdir(dirBld .. "/%{cfg.buildcfg}")
+files { dirSrc .. "/matrix/**.c" }
+includedirs { dirSrc .. "/matrix/**.h" }
 
 project "Queue"
 kind "StaticLib"
-location "%{dirSrc}/queue/"
+location(dirSrc .. "/queue/")
 targetname "queue"
-targetdir "%{dirBin}"
-objdir "%{dirBld}"
-files { "%{dirSrc}/queue/**.c" }
-includedirs { "%{dirSrc}/queue/**.h" }
+targetdir(dirBin .. "/%{cfg.buildcfg}")
+objdir(dirBld .. "/%{cfg.buildcfg}")
+files { dirSrc .. "/queue/**.c" }
+includedirs { dirSrc .. "/queue/**.h" }
 
 project "Set"
 kind "StaticLib"
-location "%{dirSrc}/set/"
+location(dirSrc .. "/set/")
 targetname "set"
-targetdir "%{dirBin}"
-objdir "%{dirBld}"
-files { "%{dirSrc}/set/**.c" }
-includedirs { "%{dirSrc}/set/**.h" }
+targetdir(dirBin .. "/%{cfg.buildcfg}")
+objdir(dirBld .. "/%{cfg.buildcfg}")
+files { dirSrc .. "/set/**.c" }
+includedirs { dirSrc .. "/set/**.h" }
 
 project "Stack"
 kind "StaticLib"
-location "%{dirSrc}/stack/"
+location(dirSrc .. "/stack/")
 targetname "stack"
-targetdir "%{dirBin}"
-objdir "%{dirBld}"
-files { "%{dirSrc}/stack/**.c" }
-includedirs { "%{dirSrc}/stack/**.h" }
+targetdir(dirBin .. "/%{cfg.buildcfg}")
+objdir(dirBld .. "/%{cfg.buildcfg}")
+files { dirSrc .. "/stack/**.c" }
+includedirs { dirSrc .. "/stack/**.h" }
