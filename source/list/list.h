@@ -10,12 +10,7 @@
 /**
  * Generic list type
  */
-typedef struct list_t {
-  list_t *next;
-  /*list_t *previous;*/
-  size_t data_size;
-  void *data;
-} list_t;
+typedef struct list_t list_t;
 
 /**
  * Constructor

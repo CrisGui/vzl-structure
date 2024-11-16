@@ -2,6 +2,13 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+typedef struct list_t {
+  list_t *next;
+  /*list_t *previous;*/
+  size_t data_size;
+  void *data;
+} list_t;
+
 list_t *list_create(size_t data_size) {
   list_t *l = (list_t *)malloc(sizeof(list_t));
   l->data_size = data_size;
