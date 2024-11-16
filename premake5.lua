@@ -176,7 +176,7 @@ buildoptions {
   "-ffunction-sections",
   "-fdata-sections",
   "-Wpadded",
-  "-fvar-tracking",
+  -- "-fvar-tracking",
   "-fno-eliminate-unused-debug-symbols",
   "-fvar-tracking-assignments",
   "-ggnu-pubnames",
