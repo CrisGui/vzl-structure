@@ -1,16 +1,55 @@
 workspace "vzl-structure"
 filename "vzl-structure"
 location "./"
-language "C"
-configurations { "Debug", "Release", "Distro" }
+configurations {
+  "Debug",
+  "Release",
+  "Distro",
+}
+flags {
+  "MultiProcessorCompile",
+}
 
-local dirBin = "%{wks.location}/binary"
-local dirBld = "%{wks.location}/build"
-local dirSrc = "%{wks.location}/source"
-local dirLib = "%{wks.location}/library"
-local dirDoc = "%{wks.location}/documentation"
-local dirTes = "%{wks.location}/test"
-local dirVdr = "%{wks.location}/vendor"
+-- local dirBin = "%{wks.location}/binary"
+-- local dirBld = "%{wks.location}/build"
+-- local dirSrc = "%{wks.location}/source"
+-- local dirLib = "%{wks.location}/library"
+-- local dirDoc = "%{wks.location}/documentation"
+-- local dirTes = "%{wks.location}/test"
+-- local dirVdr = "%{wks.location}/vendor"
+
+group "Core"
+include "source/array"
+include "source/chain"
+include "source/graph"
+include "source/list"
+include "source/map"
+include "source/matrix"
+include "source/queue"
+include "source/set"
+include "source/stack"
+group ""
+
+group "Test"
+include "test/array"
+include "test/chain"
+include "test/graph"
+include "test/list"
+include "test/map"
+include "test/matrix"
+include "test/queue"
+include "test/set"
+include "test/stack"
+group ""
+
+-- group "Dependency"
+-- include "dependency/development"
+-- include "dependency/production"
+-- group ""
+
+group "Extra"
+include "documentation"
+group ""
 
 filter "configurations:Unix**"
 system "linux"
@@ -89,7 +128,7 @@ buildoptions {
   "-Werror-implicit-function-declaration",
   "-std=c23",
 }
-defines { "DEBUG", "_DEBUG", "CLOX_DEBUG" }
+defines { "DEBUG", "_DEBUG", "VZL_STRUCTURE_DEBUG" }
 symbols "Full"
 optimize "Off"
 filter "configurations:Release*"
@@ -152,7 +191,7 @@ buildoptions {
   "-Werror-implicit-function-declaration",
   "-std=c23",
 }
-defines { "DEBUG", "_DEBUG", "CLOX_RELEASE" }
+defines { "DEBUG", "_DEBUG", "VZL_STRUCTURE_RELEASE" }
 symbols "On"
 optimize "Debug"
 filter "configurations:Distro*"
@@ -177,12 +216,12 @@ buildoptions {
   "-fdata-sections",
   "-Wpadded",
   -- "-fvar-tracking",
-  "-fno-eliminate-unused-debug-symbols",
-  "-fvar-tracking-assignments",
+  "-feliminate-unused-debug-symbols",
+  -- "-fvar-tracking-assignments",
   "-ggnu-pubnames",
   "-ginline-points",
   "-gstatement-frontiers",
-  "-fno-eliminate-unused-debug-types",
+  "-feliminate-unused-debug-types",
   "-pedantic",
   "-pedantic-errors",
   "-Wdeprecated",
@@ -191,8 +230,8 @@ buildoptions {
   -- "-fsanitize=address,undefined",
   "-fno-omit-frame-pointer",
   "-fvisibility=hidden",
-  "-fno-optimize-sibling-calls",
-  "-fno-strict-aliasing",
+  "-foptimize-sibling-calls",
+  "-fstrict-aliasing",
   "-fwrapv",
   "-Wfloat-equal",
   "-Wpointer-arith",
@@ -211,97 +250,7 @@ buildoptions {
   "-Werror-implicit-function-declaration",
   "-std=c23",
 }
-defines { "NDEBUG", "_NDEBUG", "CLOX_DISTRO" }
+defines { "NDEBUG", "_NDEBUG", "VZL_STRUCTURE_DISTRO" }
 symbols "Off"
 optimize "Full"
 filter {}
-
-project "Array"
-kind "StaticLib"
-location(dirSrc .. "/array/")
-targetname "array"
-targetdir(dirBin .. "%/{cfg.buildcfg}")
-objdir(dirBld .. "/%{cfg.buildcfg}")
-files { dirSrc .. "/array/**.c" }
-includedirs { dirSrc .. "/array/**.h" }
-
-project "Chain"
-kind "StaticLib"
-location(dirSrc .. "/chain/")
-targetname "chain"
-targetdir(dirBin .. "/%{cfg.buildcfg}")
-objdir(dirBld .. "/%{cfg.buildcfg}")
-files { dirSrc .. "/chain/**.c" }
-includedirs { dirSrc .. "/chain/**.h" }
-
-project "Graph"
-kind "StaticLib"
-location(dirSrc .. "/graph/")
-targetname "graph"
-targetdir(dirBin .. "/%{cfg.buildcfg}")
-objdir(dirBld .. "/%{cfg.buildcfg}")
-files { dirSrc .. "/graph/**.c" }
-includedirs { dirSrc .. "/graph/**.h" }
-
-project "Heap"
-kind "StaticLib"
-location(dirSrc .. "/heap/")
-targetname "heap"
-targetdir(dirBin .. "/%{cfg.buildcfg}")
-objdir(dirBld .. "/%{cfg.buildcfg}")
-files { dirSrc .. "/heap/**.c" }
-includedirs { dirSrc .. "/heap/**.h" }
-
-project "List"
-kind "StaticLib"
-location(dirSrc .. "/list/")
-targetname "list"
-targetdir(dirBin .. "/%{cfg.buildcfg}")
-objdir(dirBld .. "/%{cfg.buildcfg}")
-files { dirSrc .. "/list/**.c" }
-includedirs { dirSrc .. "/list/**.h" }
-
-project "Map"
-kind "StaticLib"
-location(dirSrc .. "/map/")
-targetname "map"
-targetdir(dirBin .. "/%{cfg.buildcfg}")
-objdir(dirBld .. "/%{cfg.buildcfg}")
-files { dirSrc .. "/map/**.c" }
-includedirs { dirSrc .. "/map/**.h" }
-
-project "Matrix"
-kind "StaticLib"
-location(dirSrc .. "/matrix/")
-targetname "matrix"
-targetdir(dirBin .. "/%{cfg.buildcfg}")
-objdir(dirBld .. "/%{cfg.buildcfg}")
-files { dirSrc .. "/matrix/**.c" }
-includedirs { dirSrc .. "/matrix/**.h" }
-
-project "Queue"
-kind "StaticLib"
-location(dirSrc .. "/queue/")
-targetname "queue"
-targetdir(dirBin .. "/%{cfg.buildcfg}")
-objdir(dirBld .. "/%{cfg.buildcfg}")
-files { dirSrc .. "/queue/**.c" }
-includedirs { dirSrc .. "/queue/**.h" }
-
-project "Set"
-kind "StaticLib"
-location(dirSrc .. "/set/")
-targetname "set"
-targetdir(dirBin .. "/%{cfg.buildcfg}")
-objdir(dirBld .. "/%{cfg.buildcfg}")
-files { dirSrc .. "/set/**.c" }
-includedirs { dirSrc .. "/set/**.h" }
-
-project "Stack"
-kind "StaticLib"
-location(dirSrc .. "/stack/")
-targetname "stack"
-targetdir(dirBin .. "/%{cfg.buildcfg}")
-objdir(dirBld .. "/%{cfg.buildcfg}")
-files { dirSrc .. "/stack/**.c" }
-includedirs { dirSrc .. "/stack/**.h" }
