@@ -20,6 +20,14 @@ int main(void) {
   assert(0 == list_destroy(&my_list));
   assert(NULL == my_list);
 
+  /*Lookup and insert*/
+  // insert Dummy data
+  list_insert_last(my_list, "There");
+  list_insert_last(my_list, (int *)12);
+  list_insert_last(my_list, &my_dummy);
+  list_insert_last(my_list, "There");
+
+
   printf("[LIST]: All tests ran successfully\n");
   return 0;
 }
