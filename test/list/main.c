@@ -27,6 +27,15 @@ int main(void) {
   list_insert_last(my_list, &my_dummy);
   list_insert_last(my_list, "There");
 
+  assert(0 == list_insert_first(&my_list, "Hello"));
+  assert(0 == strcmp("Hello", list_get_first_item(my_list)));
+
+  assert(0 == list_insert_last(my_list, (void *)3455));
+  assert(3455 == *(int *)list_get_last_item(my_list));
+
+  size_t index = 3;
+  assert(0 == list_insert_at(&my_list, index, (_Bool *)1));
+  assert(1 == *(_Bool *)list_get_item(my_list, index));
 
   printf("[LIST]: All tests ran successfully\n");
   return 0;
